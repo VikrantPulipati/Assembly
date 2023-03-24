@@ -4,10 +4,13 @@ import { StyleSheet, Text, TextInput, View, Pressable } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { colorTheme } from '../colors';
+import { lightMode, darkMode } from '../colors';
 import { fontTheme } from '../fonts';
 
+colorTheme = darkMode
+
 export const WelcomeScreen = ({ navigation, fonts }) => {
+
   const [fontsLoaded] = useFonts (fontTheme);
 
   const onLayoutRootView = useCallback(async () => {
@@ -22,6 +25,8 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
 
   const onPress = () => console.log("Working")
   
+  const navigateToAccountCreation = () => navigation.navigate("Account Creation")
+  
   return (
     <View style={styles.container} onLayout={onLayoutRootView}>
         <View>
@@ -33,6 +38,7 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           inputMode='email'
           textContentType='emailAddress'
           placeholder="University Email"
+          placeholderTextColor={colorTheme.textColor2}
         />
         <Text style={styles.inputHeader}>Password:</Text>
         <TextInput
@@ -40,13 +46,14 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           textContentType='password'
           secureTextEntry={true}
           placeholder="Password"
+          placeholderTextColor={colorTheme.textColor2}
         />
         <Pressable onPress={onPress}>
           <Text style={styles.signInButton}>Sign In</Text>
         </Pressable>
       </View>
 
-      <Text style={styles.newUserDisclaimer}>New to Assembly? <Text style={styles.signUpLink} onPress={onPress}>Click here.</Text></Text>
+      <Text style={styles.newUserDisclaimer}>New to Assembly? <Text style={styles.signUpLink} onPress={navigateToAccountCreation}>Click here.</Text></Text>
     </View>
   );
 }
@@ -57,13 +64,13 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       flexGrow: 1,
       justifyContent: 'space-between',
-      backgroundColor: '#fff',
+      backgroundColor: colorTheme.background,
       paddingTop: 100,
     },
     assemblyTitle: {
       alignSelf: 'center',
       fontFamily: 'Comfortaa',
-      color: colorTheme.textColor1,
+      color: colorTheme.primary,
       fontSize: 54,
       marginBottom: 30,
     },
@@ -76,12 +83,12 @@ const styles = StyleSheet.create({
     },
     inputHeader: {
       fontFamily: 'ABeeZee',
-      color: colorTheme.textColor1,
+      color: colorTheme.primary,
       fontSize: 18,
       marginStart: 25,
     },
     inputField: {
-      backgroundColor: colorTheme.textInputBackground,
+      backgroundColor: colorTheme.bubbleBackground,
       marginTop: 10,
       marginBottom: 20,
       marginStart: 25,
@@ -107,12 +114,12 @@ const styles = StyleSheet.create({
       alignSelf: 'flex-end',
       marginTop: 15,
       marginRight: 25,
-      backgroundColor: colorTheme.textColor1,
+      backgroundColor: colorTheme.primary,
       paddingHorizontal: 20,
       padding: 10,
       borderRadius: 30,
       fontFamily: 'ABeeZee',
-      color: "#FFFFFF",
+      color: colorTheme.buttonTextColor,
       fontSize: 20,
     },
     newUserDisclaimer: {
@@ -121,7 +128,7 @@ const styles = StyleSheet.create({
       marginBottom: 40,
       marginLeft: 25,
 
-      color: colorTheme.textColor1,
+      color: colorTheme.primary,
       fontFamily: 'ABeeZee',
       fontSize: 18,
     },
