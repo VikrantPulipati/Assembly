@@ -7,7 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { lightMode, darkMode } from '../colors';
 import { fontTheme } from '../fonts';
 
-colorTheme = darkMode
+colorTheme = lightMode
 
 export const WelcomeScreen = ({ navigation, fonts }) => {
 
@@ -52,8 +52,8 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           <Text style={styles.signInButton}>Sign In</Text>
         </Pressable>
       </View>
-
       <Text style={styles.newUserDisclaimer}>New to Assembly? <Text style={styles.signUpLink} onPress={navigateToAccountCreation}>Click here.</Text></Text>
+      
     </View>
   );
 }
@@ -65,14 +65,14 @@ const styles = StyleSheet.create({
       flexGrow: 1,
       justifyContent: 'space-between',
       backgroundColor: colorTheme.background,
-      paddingTop: 100,
+      paddingTop: 90,
     },
     assemblyTitle: {
       alignSelf: 'center',
       fontFamily: 'Comfortaa',
       color: colorTheme.primary,
       fontSize: 54,
-      marginBottom: 30,
+      marginBottom: 60,
     },
     logo: {
       marginTop: -30,
@@ -101,18 +101,12 @@ const styles = StyleSheet.create({
       padding: 10,
       paddingHorizontal: 20,
       
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      shadowOpacity: 0.20,
-      shadowRadius: 1.41,
-      elevation: 2,
+      borderColor: colorTheme.bubbleBorder,
+      borderWidth: 1,
     },
     signInButton: {
       alignSelf: 'flex-end',
-      marginTop: 15,
+      marginTop: 45,
       marginRight: 25,
       backgroundColor: colorTheme.primary,
       paddingHorizontal: 20,
@@ -125,7 +119,7 @@ const styles = StyleSheet.create({
     newUserDisclaimer: {
       alignSelf: 'flex-start',
       marginTop: 25,
-      marginBottom: 40,
+      marginBottom: 80,
       marginLeft: 25,
 
       color: colorTheme.primary,
