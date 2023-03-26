@@ -47,7 +47,7 @@ export const SettingsScreen = ({ navigation, fonts }) => {
 
 
 const ProfilePreview = () => {
-  const onPress = () => console.log("Working")
+  const onPress = () => console.log("yeet")
   return (
       <Pressable onPress={onPress}>
         <TransparentRectangle width={Dimensions.get('window').width} height={80} borderWidth={1} borderColor={'#B5C2B7'}>
@@ -62,8 +62,9 @@ const ProfilePreview = () => {
 }
 
 const MenuItem = ({ imgName, linkName }) => {
+  const onPress = () => console.log("yeet")
   return (
-      <Pressable>
+      <Pressable onPress={onPress}>
         <BottomBorderBox height={45} width={Dimensions.get('window').width-50} borderWidth={1} borderColor={'#B5C2B7'}>
           <Image source={imgName} style={styles.linkIcon} />
           <Text style={styles.link}>{linkName}</Text>
