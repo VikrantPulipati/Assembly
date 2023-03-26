@@ -32,7 +32,7 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           style={styles.inputField}
           inputMode='email'
           textContentType='emailAddress'
-          placeholder="University Email"
+          placeholder="Universityy Email"
         />
         <Text style={styles.inputHeader}>Password:</Text>
         <TextInput
