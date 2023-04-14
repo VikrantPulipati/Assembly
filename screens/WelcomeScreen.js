@@ -48,9 +48,11 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           placeholder="Password"
           placeholderTextColor={colorTheme.textColor2}
         />
-        <Pressable onPress={onPress}>
-          <Text style={styles.signInButton}>Sign In</Text>
-        </Pressable>
+        <View style={styles.buttonContainer}>
+          <Pressable onPress={onPress}>
+            <Text style={styles.signInButton}>Sign In</Text>
+          </Pressable>
+        </View>
       </View>
       <Text style={styles.newUserDisclaimer}>New to Assembly? <Text style={styles.signUpLink} onPress={navigateToAccountCreation}>Click here.</Text></Text>
       
@@ -66,6 +68,8 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
       backgroundColor: colorTheme.background,
       paddingTop: 90,
+      flexShrink: 0,
+      padding: 25,
     },
     assemblyTitle: {
       alignSelf: 'center',
@@ -85,30 +89,23 @@ const styles = StyleSheet.create({
       fontFamily: 'ABeeZee',
       color: colorTheme.primary,
       fontSize: 18,
-      marginStart: 25,
     },
     inputField: {
       backgroundColor: colorTheme.bubbleBackground,
       marginTop: 10,
       marginBottom: 20,
-      marginStart: 25,
       height: 40,
-      marginEnd: 25,
       fontSize: 14,
       fontFamily: 'ABeeZee',
       color: colorTheme.textColor2,
       borderRadius: 28,
       padding: 10,
       paddingHorizontal: 20,
-      
       borderColor: colorTheme.bubbleBorder,
       borderWidth: 1,
     },
     signInButton: {
       alignSelf: 'flex-end',
-      marginTop: 45,
-      marginRight: 25,
-      backgroundColor: colorTheme.primary,
       paddingHorizontal: 20,
       padding: 10,
       borderRadius: 30,
@@ -116,12 +113,18 @@ const styles = StyleSheet.create({
       color: colorTheme.buttonTextColor,
       fontSize: 20,
     },
+    buttonContainer: {
+      backgroundColor: colorTheme.primary,
+      borderRadius: 30,
+      alignSelf: 'flex-end',
+      borderWidth: 1,
+      marginTop: 40,
+      borderColor: colorTheme.primary,
+    },
     newUserDisclaimer: {
       alignSelf: 'flex-start',
       marginTop: 25,
-      marginBottom: 80,
-      marginLeft: 25,
-
+      marginBottom: 40,
       color: colorTheme.primary,
       fontFamily: 'ABeeZee',
       fontSize: 18,

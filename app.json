@@ -21,7 +21,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/assembly_icon.png",
         "backgroundColor": "#ffffff",
-        "softwareKeyboardLayoutMode": "pan"
+        "softwareKeyboardLayoutMode": "adjustPan"
       }
     },
     "web": {
