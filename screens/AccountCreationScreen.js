@@ -69,7 +69,7 @@ export const AccountCreationScreen = ({ navigation, fonts }) => {
           data={data}
           renderItem={({errorMessage}) => <ErrorBubble errorMessage={errorMessage.message}/>}
           keyExtractor={errorMessage => errorMessage.key}/>
-      );
+      )
       // return (
       //   <View
       //     style={styles.flexBox}>
