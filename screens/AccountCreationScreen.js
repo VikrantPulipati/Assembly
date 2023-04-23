@@ -18,7 +18,7 @@ export const AccountCreationScreen = ({ navigation, fonts }) => {
     const [userEmail, setUserEmail] = useState("")
     const [userPassword, setUserPassword] = useState("")
     const [confirmedPassword, setConfirmedPassword] = useState("")
-    const [errorList, setErrorList] = useState([belowMinimumCharacters, mustIncludeSpecialCharacter])
+    const [errorList, setErrorList] = useState([])
 
     const [fontsLoaded] = useFonts (fontTheme);
 
@@ -36,20 +36,50 @@ export const AccountCreationScreen = ({ navigation, fonts }) => {
 
     const passwordInputOnChange = (password) => {
       setUserPassword(password)
-      updateErrorList()
+      //updateErrorList()
     }
 
     const confirmPasswordOnChange = (confirmedPassword) => {
       setConfirmedPassword(confirmedPassword)
-      updateErrorList()
+      //updateErrorList()
     }
 
-    function updateErrorList () {
+    const ErrorList = () => {
       data = []
-      if (userPassword.length < 8) data.put(belowMinimumCharacters)
-      if (!containsSpecialCharacter()) data.put(mustIncludeSpecialCharacter)
-      if (userPassword !== confirmedPassword) data.put(passwordsMustMatch)
-      setErrorList(data)
+      if (userPassword == null || userPassword.length < 8) data.put({
+        key: "passwordTooShort",
+        message: belowMinimumCharacters
+      })
+      if (!containsSpecialCharacter()) data.put({
+        key: "needsSpecialCharacter",
+        message: mustIncludeSpecialCharacter
+      })
+      if (confirmedPassword == null || userPassword !== confirmedPassword) data.put({
+        key: "passwordsDontMatch",
+        message: passwordsMustMatch
+      })
+      console.log(data)
+      const ErrorBubble = ({errorMessage}) => {
+        <View style={styles.errorBubbles}>
+          <Text style={styles.errorMessage}>{errorMessage}</Text>
+        </View>
+      }
+      return (
+        <FlatList
+          data={data}
+          renderItem={({errorMessage}) => <ErrorBubble errorMessage={errorMessage.message}/>}
+          keyExtractor={errorMessage => errorMessage.key}/>
+      );
+      // return (
+      //   <View
+      //     style={styles.flexBox}>
+      //     {data.map((errorMessage) => {
+      //       return (
+
+      //       )
+      //     })}
+      //   </View>
+      // )
     }
 
     function containsSpecialCharacter () {
@@ -57,7 +87,8 @@ export const AccountCreationScreen = ({ navigation, fonts }) => {
     }
 
     const createAccountOnPress = () => {
-      
+      updateErrorList()
+      // FILL IN THE REST
     }
 
     return (
@@ -95,15 +126,7 @@ export const AccountCreationScreen = ({ navigation, fonts }) => {
                   placeholderTextColor={colorTheme.textColor2}
                   onChangeText={confirmedPassword => confirmPasswordOnChange(confirmedPassword)}/>
               </View>
-              <View style={styles.flexBox}>
-                {errorList.map((errorMessage) => {
-                  return (
-                    <View style={styles.errorBubbles}>
-                      <Text style={styles.errorMessage}>{errorMessage}</Text>
-                    </View>
-                  );
-                })}
-              </View>
+              <ErrorList/>
               <View style={styles.createAccountButtonContainer}>
                 <Pressable onPress={createAccountOnPress}>
                 <View style={styles.createAccountButton}>
