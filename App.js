@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { WelcomeScreen } from './screens/WelcomeScreen';
 import { SettingsScreen } from './screens/SettingsScreen';
+import { ExploreScreen } from './screens/ExploreScreen';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -12,10 +13,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SettingsScreen" screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName="ExploreScreen" screenOptions={{headerShown: false}}>
         <Stack.Screen
-          name="Settings Screen"
-          component={SettingsScreen}
+          name="Explore Screen"
+          component={ExploreScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -4,15 +4,17 @@ import { StyleSheet, Text, TextInput, View, Pressable, Dimensions, Image } from 
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { colorTheme } from '../colors';
+import { lightMode, darkMode } from '../colors';
 import { fontTheme } from '../fonts';
-import arrow from '../assets/assembly_arrow.jpg';
-import bell from '../assets/assembly_bell.jpg';
-import cap from '../assets/assembly_cap.jpg';
-import palette from '../assets/assembly_palette.jpg';
-import pencil from '../assets/assembly_pencil.jpg';
-import profile from '../assets/assembly_profile.jpg';
-import question from '../assets/assembly_question.jpg';
+import arrow from '../assets/assembly_arrow.png';
+import bell from '../assets/assembly_bell.png';
+import cap from '../assets/assembly_cap.png';
+import palette from '../assets/assembly_palette.png';
+import pencil from '../assets/assembly_pencil.png';
+import profile from '../assets/assembly_profile.png';
+import question from '../assets/assembly_question.png';
+
+colorTheme = lightMode
 
 export const SettingsScreen = ({ navigation, fonts }) => {
   const [fontsLoaded] = useFonts (fontTheme);
@@ -43,8 +45,6 @@ export const SettingsScreen = ({ navigation, fonts }) => {
         
   );
 }
-
-
 
 const ProfilePreview = () => {
   const onPress = () => console.log("yeet")
@@ -80,8 +80,10 @@ const TransparentRectangle = ({ width, height, borderWidth, borderColor, childre
       width: width,
       height: height,
       backgroundColor: 'transparent',
-      borderColor: borderColor,
-      borderWidth: borderWidth,
+      borderBottomWidth: borderWidth,
+      borderBottomColor: borderColor,
+      borderTopWidth: borderWidth,
+      borderTopColor: borderColor,
 
     }}>
       {children}
@@ -108,27 +110,25 @@ const BottomBorderBox = ({ height, width, borderWidth, borderColor, children }) 
   );
 };
 
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
         flexGrow: 1,
         justifyContent: 'flex-start',
-        backgroundColor: '#fff',
+        backgroundColor: colorTheme.background,
         paddingTop: 50,
     },
     assemblyTitle: {
-        fontFamily: 'Comfortaa',
-        color: colorTheme.textColor1,
+        fontFamily: 'ABeeZee',
+        color: colorTheme.primary,
         fontSize: 25,
         marginStart: 25,
         marginBottom: 20,
     },
     assemblySubtitle: {
-      fontFamily: 'Comfortaa',
-      color: colorTheme.textColor1,
+      fontFamily: 'ABeeZee',
+      color: colorTheme.primary,
       fontSize: 18,
       marginStart: 25,
       marginTop: 25,
@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#D9D9D9",
     },
     assemblyHeading:{
-        fontFamily: 'Comfortaa',
-        color: 'black',
+        fontFamily: 'ABeeZee',
+        color: colorTheme.textColor1,
         fontSize: 14,
         marginStart: 25,
         position: 'absolute', 
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         left: 80,
     },
     assemblySubheading:{
-      fontFamily: 'Comfortaa',
+      fontFamily: 'ABeeZee',
       color: colorTheme.textColor2,
       fontSize: 10,
       marginStart: 25,
@@ -163,27 +163,27 @@ const styles = StyleSheet.create({
       left: 80,
     },
     link:{
-      fontFamily: 'Comfortaa',
-      color: 'black',
+      fontFamily: 'ABeeZee',
+      color: colorTheme.textColor1,
       fontSize: 14,
       marginStart: 50,
       position: 'absolute', 
       top: -6, 
     },
     headingArrow:{
-      width: '10%', height: '30%',
+      width: '5%', height: '30%',
       position: 'absolute', 
       top: 28, 
       right: 20,
     },
     linkArrow:{
-      width: '10%', height: '30%',
+      width: '5%', height: '30%',
       position: 'absolute', 
       top: -6, 
       right: 0,
     },
     linkIcon:{
-      width: '10%', height: '55%',
+      width: '8%', height: '58%',
       position: 'absolute', 
       top: -10, 
       left: 0,

@@ -4,8 +4,10 @@ import { StyleSheet, Text, TextInput, View, Pressable } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { colorTheme } from '../colors';
+import { lightMode, darkMode } from '../colors';
 import { fontTheme } from '../fonts';
+
+colorTheme = lightMode
 
 export const WelcomeScreen = ({ navigation, fonts }) => {
   const [fontsLoaded] = useFonts (fontTheme);
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
       marginStart: 25,
     },
     inputField: {
-      backgroundColor: colorTheme.textInputBackground,
+      backgroundColor: colorTheme.bubbleBackground,
       marginTop: 10,
       marginBottom: 20,
       marginStart: 25,
