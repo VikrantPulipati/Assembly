@@ -48,13 +48,11 @@ export const ExploreScreen = ({ navigation, fonts }) => {
 const SearchBar = () => {
     const onPress = () => console.log("yeet")
     return (
-        <Pressable onPress={onPress}>
-            <View style={styles.textBox}>
-                <Image source={search} style={styles.searchIcon} />
-                <Text style={styles.text}>Search events on campus</Text>
-                <Image source={slider} style={styles.searchIcon} />
-            </View> 
-        </Pressable>
+        <View style={styles.textBox}>
+            <Image source={search} style={styles.searchIcon} />
+            <TextInput style={styles.text}>Search events on campus</TextInput>
+            <Image source={slider} style={styles.searchIcon} />
+        </View> 
     )
 }
 
@@ -118,11 +116,12 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
         marginBottom: 25,
+        marginHorizontal: 25,
     },
     text: {
         fontFamily: 'ABeeZee',
         fontSize: 12,
-        paddingHorizontal: 50, 
+        paddingHorizontal: 25, 
         color: colorTheme.primary,
     },
     roundedRectangle: {
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
     },
       
     searchIcon:{
-          width: '4%', height: '85%',
+          //width: '4%', height: '85%',
         //position: 'absolute', 
     },
     eventTitle:{

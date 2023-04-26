@@ -1,5 +1,5 @@
 import * as SplashScreen from 'expo-splash-screen';
-import {  View, Image } from 'react-native';
+import { Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { WelcomeScreen } from './screens/WelcomeScreen';
@@ -8,6 +8,8 @@ import { SettingsScreen } from './screens/SettingsScreen';
 import { ExploreScreen } from './screens/ExploreScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { lightMode, darkMode } from './colors';
+import { HomeScreen } from './screens/HomeScreen';
+import { GroupsScreen } from './screens/GroupsScreen';
 
 colorTheme = lightMode
 
@@ -45,9 +47,9 @@ function MyTabs() {
       tabBarInactiveTintColor = 'gray'
   
     >
-      <Tab.Screen name="Home" component={WelcomeScreen} options={{ headerShown: false }}/>
+      <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
       <Tab.Screen name="Explore" component={ExploreScreen} options={{ headerShown: false }}/>
-      <Tab.Screen name="Groups" component={SettingsScreen} options={{ headerShown: false }}/>
+      <Tab.Screen name="Groups" component={GroupsScreen} options={{ headerShown: false }}/>
       <Tab.Screen name="Profile" component={SettingsScreen} options={{ headerShown: false }}/>
     </Tab.Navigator>
   );

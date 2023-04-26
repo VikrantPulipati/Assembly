@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, Pressable, FlatList } from 'react-native';
 
 import { useFonts } from 'expo-font';
@@ -6,7 +6,6 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import { lightMode, darkMode } from '../colors';
 import { fontTheme } from '../fonts';
-import { useEffect } from 'react';
 
 colorTheme = lightMode
 
@@ -21,10 +20,6 @@ const mustIncludeSpecialCharacter = {
 const passwordsMustMatch = {
   key: "notMatched",
   message: "Passwords must match",
-}
-const emailEmpty = {
-  key: "emailEmpty",
-  message: "Email is empty",
 }
 const emailInvalid = {
   key: "emailInvalid",
@@ -65,10 +60,8 @@ export const AccountCreationScreen = ({ navigation, fonts }) => {
   }
 
   const updateErrorList = () => {
-    
     data = []
-    if (userEmail.length < 1) data.push(emailEmpty)
-    else if (!isEmailValid()) data.push(emailInvalid)
+    if (!isEmailValid()) data.push(emailInvalid)
     if (userPassword == null || userPassword.length < 8) data.push(belowMinimumCharacters)
     if (!containsSpecialCharacter()) data.push(mustIncludeSpecialCharacter)
     if (confirmedPassword == null || userPassword !== confirmedPassword) data.push(passwordsMustMatch)
@@ -115,6 +108,7 @@ export const AccountCreationScreen = ({ navigation, fonts }) => {
               <TextInput
                 id="passwordInput"
                 style={styles.inputField}
+                secureTextEntry={true}
                 textContentType='password'
                 placeholder="Enter password"
                 placeholderTextColor={colorTheme.textColor2}
@@ -124,6 +118,7 @@ export const AccountCreationScreen = ({ navigation, fonts }) => {
               <TextInput
                 id="passwordConfirmInput"
                 style={styles.inputField}
+                secureTextEntry={true}
                 textContentType='password'
                 placeholder="Enter password again"
                 placeholderTextColor={colorTheme.textColor2}
@@ -133,6 +128,7 @@ export const AccountCreationScreen = ({ navigation, fonts }) => {
               data={errorList}
               renderItem={ErrorBubble}
               extraData={errorList}
+              scrollEnabled={false}
             />
             <View style={styles.createAccountButtonContainer}>
               <Pressable onPress={updateErrorList}>

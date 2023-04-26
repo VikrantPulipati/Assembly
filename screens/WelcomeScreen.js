@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, Pressable } from 'react-native';
 
 import { useFonts } from 'expo-font';
@@ -6,12 +6,16 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import { lightMode, darkMode } from '../colors';
 import { fontTheme } from '../fonts';
+import { Alert } from 'react-native';
 
 colorTheme = lightMode
 
 export const WelcomeScreen = ({ navigation, fonts }) => {
 
-  const [fontsLoaded] = useFonts (fontTheme);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const [fontsLoaded] = useFonts (fontTheme)
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -19,14 +23,25 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
     }
   }, [fontsLoaded]);
   
-  if (!fontsLoaded) {
-    return null
+  if (!fontsLoaded) { return null }
+
+  const signInOnPress = () => {
+    if (isEmailValid() && credentialsValid()) navigation.navigate("MainScreen")
+    else Alert.alert('Login Failed', 'Invalid credentials', [{
+      text:"Try Again"
+    }])
   }
 
-  const onPress = () => console.log("Working")
+  function isEmailValid () {
+    return (email.length > 0
+      && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(email))
+  }
+
+  function credentialsValid () {
+    return true
+  }
   
   const navigateToAccountCreation = () => navigation.navigate("AccountCreationScreen")
-  const navigateToMainScreen = () => navigation.navigate("MainScreen")
   
   return (
     <View style={styles.container} onLayout={onLayoutRootView}>
@@ -40,6 +55,7 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           textContentType='emailAddress'
           placeholder="University Email"
           placeholderTextColor={colorTheme.textColor2}
+          onChangeText={email => setEmail(email)}
         />
         <Text style={styles.inputHeader}>Password:</Text>
         <TextInput
@@ -48,9 +64,10 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           secureTextEntry={true}
           placeholder="Password"
           placeholderTextColor={colorTheme.textColor2}
+          onChangeText={password => setPassword(email)}
         />
         <View style={styles.buttonContainer}>
-          <Pressable onPress={navigateToMainScreen}>
+          <Pressable onPress={signInOnPress}>
             <Text style={styles.signInButton}>Sign In</Text>
           </Pressable>
         </View>
@@ -106,8 +123,6 @@ const styles = StyleSheet.create({
       borderWidth: 1,
     },
     signInButton: {
-      marginTop: 15,
-      marginRight: 25,
       paddingHorizontal: 20,
       padding: 10,
       fontFamily: 'ABeeZee',
@@ -115,6 +130,8 @@ const styles = StyleSheet.create({
       fontSize: 20,
     },
     buttonContainer: {
+      marginTop: 15,
+      marginRight: 25,
       backgroundColor: colorTheme.primary,
       borderRadius: 30,
       alignSelf: 'flex-end',
