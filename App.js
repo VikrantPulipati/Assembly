@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { WelcomeScreen } from './screens/WelcomeScreen';
 import { SettingsScreen } from './screens/SettingsScreen';
 import { ExploreScreen } from './screens/ExploreScreen';
+import { GroupsScreen } from './screens/GroupsScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Tabs from './navigation/tabs';
 import { lightMode, darkMode } from './colors';
@@ -35,10 +36,7 @@ function MyTabs() {
           } else if (route.name === 'Profile') {
             iconName = focused ? 'example-welcome-icon' : 'example-welcome-icon';
             return <Image source={require('./assets/assembly_blueprofile.png')} style={{ width: size, height: size }} />;
-          }
-
-         
-          
+          } 
         },
       })}
       tabBarActiveTintColor = {colorTheme.textColor2}
@@ -47,7 +45,7 @@ function MyTabs() {
     >
       <Tab.Screen name="Home" component={WelcomeScreen} options={{ headerShown: false }}/>
       <Tab.Screen name="Explore" component={ExploreScreen} options={{ headerShown: false }}/>
-      <Tab.Screen name="Groups" component={SettingsScreen} options={{ headerShown: false }}/>
+      <Tab.Screen name="Groups" component={GroupsScreen} options={{ headerShown: false }}/>
       <Tab.Screen name="Profile" component={SettingsScreen} options={{ headerShown: false }}/>
     </Tab.Navigator>
   );
