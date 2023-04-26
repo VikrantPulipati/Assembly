@@ -106,6 +106,9 @@ const styles = StyleSheet.create({
     },
     signInButton: {
       alignSelf: 'flex-end',
+      marginTop: 15,
+      marginRight: 25,
+      backgroundColor: colorTheme.primary,
       paddingHorizontal: 20,
       padding: 10,
       borderRadius: 30,
@@ -130,6 +133,7 @@ const styles = StyleSheet.create({
       fontSize: 18,
     },
     signUpLink: {
-      textDecorationLine: 'underline'
+      textDecorationLine: 'underline',
+      color: colorTheme.primary,
     }
   });
