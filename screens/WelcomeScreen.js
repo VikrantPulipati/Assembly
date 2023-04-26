@@ -25,7 +25,8 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
 
   const onPress = () => console.log("Working")
   
-  const navigateToAccountCreation = () => navigation.navigate("Account Creation")
+  const navigateToAccountCreation = () => navigation.navigate("AccountCreationScreen")
+  const navigateToMainScreen = () => navigation.navigate("MainScreen")
   
   return (
     <View style={styles.container} onLayout={onLayoutRootView}>
@@ -49,7 +50,7 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           placeholderTextColor={colorTheme.textColor2}
         />
         <View style={styles.buttonContainer}>
-          <Pressable onPress={onPress}>
+          <Pressable onPress={navigateToMainScreen}>
             <Text style={styles.signInButton}>Sign In</Text>
           </Pressable>
         </View>
@@ -105,13 +106,10 @@ const styles = StyleSheet.create({
       borderWidth: 1,
     },
     signInButton: {
-      alignSelf: 'flex-end',
       marginTop: 15,
       marginRight: 25,
-      backgroundColor: colorTheme.primary,
       paddingHorizontal: 20,
       padding: 10,
-      borderRadius: 30,
       fontFamily: 'ABeeZee',
       color: colorTheme.buttonTextColor,
       fontSize: 20,

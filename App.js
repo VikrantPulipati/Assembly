@@ -7,7 +7,6 @@ import { AccountCreationScreen } from './screens/AccountCreationScreen';
 import { SettingsScreen } from './screens/SettingsScreen';
 import { ExploreScreen } from './screens/ExploreScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Tabs from './navigation/tabs';
 import { lightMode, darkMode } from './colors';
 
 colorTheme = lightMode
@@ -57,9 +56,10 @@ function MyTabs() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="MyTabs" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="MyTabs" component={MyTabs} />
-        
+      <Stack.Navigator initialRouteName="WelcomeScreen" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="MainScreen" component={MyTabs} />
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}></Stack.Screen>
+        <Stack.Screen name="AccountCreationScreen" component={AccountCreationScreen}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

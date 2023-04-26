@@ -35,5 +35,5 @@ export const darkMode = {
     textColor1: "#FCFCFC",
     textColor2: "#B5C2B7",
     
-    buttonTextColor: "#FCFCFC",
+    buttonTextColor: "#FFFFFF",
 }
