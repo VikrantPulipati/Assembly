@@ -4,10 +4,13 @@ import { StyleSheet, Text, TextInput, View, Pressable } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { colorTheme } from '../colors';
+import { lightMode, darkMode } from '../colors';
 import { fontTheme } from '../fonts';
 
+colorTheme = lightMode
+
 export const WelcomeScreen = ({ navigation, fonts }) => {
+
   const [fontsLoaded] = useFonts (fontTheme);
 
   const onLayoutRootView = useCallback(async () => {
@@ -22,6 +25,9 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
 
   const onPress = () => console.log("Working")
   
+  const navigateToAccountCreation = () => navigation.navigate("AccountCreationScreen")
+  const navigateToMainScreen = () => navigation.navigate("MainScreen")
+  
   return (
     <View style={styles.container} onLayout={onLayoutRootView}>
         <View>
@@ -33,6 +39,7 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           inputMode='email'
           textContentType='emailAddress'
           placeholder="University Email"
+          placeholderTextColor={colorTheme.textColor2}
         />
         <Text style={styles.inputHeader}>Password:</Text>
         <TextInput
@@ -40,13 +47,16 @@ export const WelcomeScreen = ({ navigation, fonts }) => {
           textContentType='password'
           secureTextEntry={true}
           placeholder="Password"
+          placeholderTextColor={colorTheme.textColor2}
         />
-        <Pressable onPress={onPress}>
-          <Text style={styles.signInButton}>Sign In</Text>
-        </Pressable>
+        <View style={styles.buttonContainer}>
+          <Pressable onPress={navigateToMainScreen}>
+            <Text style={styles.signInButton}>Sign In</Text>
+          </Pressable>
+        </View>
       </View>
-
-      <Text style={styles.newUserDisclaimer}>New to Assembly? <Text style={styles.signUpLink} onPress={onPress}>Click here.</Text></Text>
+      <Text style={styles.newUserDisclaimer}>New to Assembly? <Text style={styles.signUpLink} onPress={navigateToAccountCreation}>Click here.</Text></Text>
+      
     </View>
   );
 }
@@ -57,15 +67,17 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       flexGrow: 1,
       justifyContent: 'space-between',
-      backgroundColor: '#fff',
-      paddingTop: 100,
+      backgroundColor: colorTheme.background,
+      paddingTop: 90,
+      flexShrink: 0,
+      padding: 25,
     },
     assemblyTitle: {
       alignSelf: 'center',
       fontFamily: 'Comfortaa',
-      color: colorTheme.textColor1,
+      color: colorTheme.primary,
       fontSize: 54,
-      marginBottom: 30,
+      marginBottom: 60,
     },
     logo: {
       marginTop: -30,
@@ -76,56 +88,50 @@ const styles = StyleSheet.create({
     },
     inputHeader: {
       fontFamily: 'ABeeZee',
-      color: colorTheme.textColor1,
+      color: colorTheme.primary,
       fontSize: 18,
-      marginStart: 25,
     },
     inputField: {
-      backgroundColor: colorTheme.textInputBackground,
+      backgroundColor: colorTheme.bubbleBackground,
       marginTop: 10,
       marginBottom: 20,
-      marginStart: 25,
       height: 40,
-      marginEnd: 25,
       fontSize: 14,
       fontFamily: 'ABeeZee',
       color: colorTheme.textColor2,
       borderRadius: 28,
       padding: 10,
       paddingHorizontal: 20,
-      
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      shadowOpacity: 0.20,
-      shadowRadius: 1.41,
-      elevation: 2,
+      borderColor: colorTheme.bubbleBorder,
+      borderWidth: 1,
     },
     signInButton: {
-      alignSelf: 'flex-end',
       marginTop: 15,
       marginRight: 25,
-      backgroundColor: colorTheme.textColor1,
       paddingHorizontal: 20,
       padding: 10,
-      borderRadius: 30,
       fontFamily: 'ABeeZee',
-      color: "#FFFFFF",
+      color: colorTheme.buttonTextColor,
       fontSize: 20,
+    },
+    buttonContainer: {
+      backgroundColor: colorTheme.primary,
+      borderRadius: 30,
+      alignSelf: 'flex-end',
+      borderWidth: 1,
+      marginTop: 40,
+      borderColor: colorTheme.primary,
     },
     newUserDisclaimer: {
       alignSelf: 'flex-start',
       marginTop: 25,
       marginBottom: 40,
-      marginLeft: 25,
-
-      color: colorTheme.textColor1,
+      color: colorTheme.primary,
       fontFamily: 'ABeeZee',
       fontSize: 18,
     },
     signUpLink: {
-      textDecorationLine: 'underline'
+      textDecorationLine: 'underline',
+      color: colorTheme.primary,
     }
   });
