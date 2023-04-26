@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     assemblyTitle: {
       alignSelf: 'center',
       fontFamily: 'Comfortaa',
-      color: colorTheme.textColor1,
+      color: colorTheme.primary,
       fontSize: 54,
       marginBottom: 30,
     },
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
       alignSelf: 'flex-end',
       marginTop: 15,
       marginRight: 25,
-      backgroundColor: colorTheme.textColor1,
+      backgroundColor: colorTheme.primary,
       paddingHorizontal: 20,
       padding: 10,
       borderRadius: 30,
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
       fontSize: 18,
     },
     signUpLink: {
-      textDecorationLine: 'underline'
+      textDecorationLine: 'underline',
+      color: colorTheme.primary,
     }
   });
