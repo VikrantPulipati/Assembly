@@ -11,6 +11,13 @@ import { lightMode, darkMode } from './colors';
 import { HomeScreen } from './screens/HomeScreen';
 import { GroupsScreen } from './screens/GroupsScreen';
 
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Feather from 'react-native-vector-icons/Feather';
+import Octicons from 'react-native-vector-icons/Octicons';
+
 colorTheme = lightMode
 
 SplashScreen.preventAutoHideAsync();
@@ -27,16 +34,16 @@ function MyTabs() {
 
           if (route.name === 'Home') {
             iconName = focused ? 'example-explore-icon' : 'example-explore-icon';
-            return <Image source={require('./assets/assembly_home.png')} style={{ width: size, height: size }} />;
+            return <Octicons name='home' style={{ color: colorTheme.primary, fontSize: size }}/>;
           } else if (route.name === 'Explore') {
             iconName = focused ? 'example-settings-icon' : 'example-settings-icon';
-            return <Image source={require('./assets/assembly_search.png')} style={{ width: size, height: size }} />;
+            return <Fontisto name='search' style={{ color: colorTheme.primary, fontSize: size-2}} />;
           } else if (route.name === 'Groups') {
             iconName = focused ? 'example-welcome-icon' : 'example-welcome-icon';
-            return <Image source={require('./assets/assembly_groups.png')} style={{ width: size, height: size }} />;
+            return <Feather name='users' style={{ color: colorTheme.primary, fontSize: size}} />;
           } else if (route.name === 'Profile') {
             iconName = focused ? 'example-welcome-icon' : 'example-welcome-icon';
-            return <Image source={require('./assets/assembly_blueprofile.png')} style={{ width: size, height: size }} />;
+            return <Feather name='user' style={{ color: colorTheme.primary, fontSize: size}} />;
           }
 
          

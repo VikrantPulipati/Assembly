@@ -48,9 +48,14 @@ export const ExploreScreen = ({ navigation, fonts }) => {
 const SearchBar = () => {
     const onPress = () => console.log("yeet")
     return (
-        <View style={styles.textBox}>
+        <View style={styles.searchBox}>
             <Image source={search} style={styles.searchIcon} />
-            <TextInput style={styles.text}>Search events on campus</TextInput>
+            <TextInput 
+                style={styles.text} 
+                inputMode='search' 
+                placeholder="Search events on campus"
+                placeholderTextColor={colorTheme.primary}
+            />
             <Image source={slider} style={styles.searchIcon} />
         </View> 
     )
@@ -102,21 +107,23 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         justifyContent: 'flex-start',
         backgroundColor: colorTheme.background,
-        paddingTop: 30,
+        paddingTop: 50,
     },
-    textBox: {
+    searchBox: {
         flexDirection: 'row',
         borderWidth: 1,
         borderColor: '#D2D2D2',
-        borderRadius: 20,
+        borderRadius: 28,
         paddingHorizontal: 20, 
         paddingVertical: 15,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         alignSelf: 'center',
         marginTop: 10,
         marginBottom: 25,
         marginHorizontal: 25,
+        width: 320,
+        backgroundColor: colorTheme.bubbleBackground,
     },
     text: {
         fontFamily: 'ABeeZee',
@@ -133,12 +140,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        margin: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        width: 320,
     },
       
     searchIcon:{
-          //width: '4%', height: '85%',
-        //position: 'absolute', 
+        //width: '4%', height: '85%',
+        //position: 'absolute',
+        
     },
     eventTitle:{
         fontFamily: 'ABeeZee',
